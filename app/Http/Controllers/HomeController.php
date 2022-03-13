@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Transaksi;
 use App\Anggota;
 use App\Buku;
-use Auth;
 
 
 class HomeController extends Controller
@@ -26,6 +25,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function home()
+    {
+        return view('Auth.welcome');
+    }
+
     public function index()
     {
         $transaksi = Transaksi::get();

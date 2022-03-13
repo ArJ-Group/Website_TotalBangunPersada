@@ -2,237 +2,132 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>GYM - LOGIN</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Total Bangun Persada</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="{!! asset('logreg/stylelogin.css') !!}">
-  <link rel="icon" href="landing/images/new/logo2.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="stylesheet" href="{{asset('vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
-  <link rel="stylesheet" href="{{asset('vendors/iconfonts/puse-icons-feather/feather.css')}}">
-  <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
-  <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.addons.css')}}">
-  <link rel="shortcut icon" href="{{asset('favicon.ico')}}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="icon" href="logreg/new/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/vendor/bootstrap/css/bootstrap.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/fonts/font-awesome-4.7.0/css/font-awesome.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/vendor/animate/animate.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/vendor/css-hamburgers/hamburgers.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/vendor/animsition/css/animsition.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/vendor/select2/select2.min.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/vendor/daterangepicker/daterangepicker.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/css/util.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/new/css/main.css') !!}">
+
+
 </head>
 
-<body>
-  <div class="container">
+<body style="color:#010173 ;">
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
 
-    <div class="forms-container">
-      <div class="signin-signup">
-
-        <form method="POST" action="{{ route('login') }}" class="sign-in-form">
-          {{ csrf_field() }}
-
-          <h2 class="title">Sign in</h2>
-
-          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label class="label">Username</label>
-            <div class="input-group">
-              <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
+                <span class="login100-form-logo">
+                    <img src="logreg/new/logo.png"></img>
                 </span>
-              </div>
+                <form method="POST" action="{{ route('login') }}" class="login100-form validate-form">
+                    {{ csrf_field() }}
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Log in
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" type="text" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <span class="focus-input100">
+                            <i class="fa fa-user" aria-hidden="true"><span class="focus-input100"></i>
+
+                        </span>
+                    </div>
+                    @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                    @endif
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" name="password" required placeholder="Password">
+                        <span class="focus-input100">
+                            <i class="fa fa-lock" aria-hidden="true"><span class="focus-input100"></i>
+
+                        </span>
+                    </div>
+                    @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                    @endif
+
+                    <div class="contact100-form-checkbox">
+                        <input type="checkbox" name="remember-me"> Remember Me
+
+                    </div>
+                    <div class="container-login100-form-btn">
+                        
+                        <button type="submit" class="login100-form-btn">
+                            Login
+                        </button>
+
+
+                    </div>
+
+                    <div class="text-center p-t-90">
+                        <a class="txt1" href="#" onclick="myFunction1()">
+                            Doesn't Have Account ?
+                        </a><br>
+                        <a class="txt1" href="#" onclick="myFunction1()">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </form>
             </div>
-            @if ($errors->has('email'))
-            <span class="help-block">
-              <strong>{{ $errors->first('email') }}</strong>
-            </span>
-            @endif
-          </div>
-          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-            <label class="label">Password</label>
-            <div class="input-group">
-              <input id="password" type="password" class="form-control" name="password" required>
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
-                </span>
-              </div>
-              @if ($errors->has('password'))
-              <span class="help-block">
-                <strong>{{ $errors->first('password') }}</strong>
-              </span>
-              @endif
-            </div>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary submit-btn btn-block" type="submit">Login</button>
-          </div>
-          <p class="social-text">Or Sign up with social platforms</p>
-          <div class="social-media">
-            <a href="#" class="social-icon">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-        </form>
-
-        <form method="POST" action="{{ route('login') }}" class="sign-up-form">
-          <h2 class="title">Sign Up</h2>
-
-          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label class="label">Name</label>
-            <div class="input-group">
-              <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
-                </span>
-              </div>
-            </div>
-            @if ($errors->has('email'))
-            <span class="help-block">
-              <strong>{{ $errors->first('email') }}</strong>
-            </span>
-            @endif
-          </div>
-
-          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label class="label">Email</label>
-            <div class="input-group">
-              <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
-                </span>
-              </div>
-            </div>
-            @if ($errors->has('email'))
-            <span class="help-block">
-              <strong>{{ $errors->first('email') }}</strong>
-            </span>
-            @endif
-          </div>
-
-          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label class="label">Username</label>
-            <div class="input-group">
-              <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
-                </span>
-              </div>
-            </div>
-            @if ($errors->has('email'))
-            <span class="help-block">
-              <strong>{{ $errors->first('email') }}</strong>
-            </span>
-            @endif
-          </div>
-          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-            <label class="label">Password</label>
-            <div class="input-group">
-              <input id="password" type="password" class="form-control" name="password" required>
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
-                </span>
-              </div>
-              @if ($errors->has('password'))
-              <span class="help-block">
-                <strong>{{ $errors->first('password') }}</strong>
-              </span>
-              @endif
-            </div>
-          </div>
-          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-            <label class="label">Confirm Password</label>
-            <div class="input-group">
-              <input id="password" type="password" class="form-control" name="password" required>
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
-                </span>
-              </div>
-              @if ($errors->has('password'))
-              <span class="help-block">
-                <strong>{{ $errors->first('password') }}</strong>
-              </span>
-              @endif
-            </div>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary submit-btn btn-block" type="submit">Login</button>
-          </div>
-          <p class="social-text">Or Sign up with social platforms</p>
-          <div class="social-media">
-            <a href="#" class="social-icon">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-
-        </form>
-
-      </div>
-
-
-      <div class="panels-container">
-        <div class="panel left-panel">
-          <div class="content">
-            <h3>New here ?</h3>
-            <p>
-              Start By Click
-            </p>
-            <button class="btn transparent" id="sign-up-btn">
-              Sign up
-            </button>
-          </div>
-          <img src="logreg/gg.png" class="image" alt="" />
         </div>
-        <div class="panel right-panel">
-          <div class="content">
-            <h3>One of us ?</h3>
-            <p>
-              Start Click
-            </p>
-            <button class="btn transparent" id="sign-in-btn">
-              Sign in
-            </button>
-          </div>
-          <img src="logreg/register.svg" class="image" alt="" />
-        </div>
-      </div>
     </div>
+    <div id="dropDownSelect1"></div>
 
-  </div>
-  <p class="footer-text text-center" style="margin-top: 20px;color: #308ee0">Copyright © {{date('Y')}} Polinema.com - All rights reserved.</p>
-  </div>
-  </div>
-  </div>
-  <!-- content-wrapper ends Herziwp@gmail.com -->
-  </div>
-  <!-- page-body-wrapper ends -->
-  </div>
-  </form>
-  <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
-  <script src="{{asset('vendors/js/vendor.bundle.addons.js')}}"></script>
-  <script src="logreg/app.js"></script>
+    <script>
+        function myFunction1() {
+            alert("Silahkan Mengubungi Administrasi");
+        }
+    </script>
+
+    <script src="logreg/new/vendor/jquery/jquery-3.2.1.min.js"></script>
+
+    <script src="logreg/new/vendor/animsition/js/animsition.min.js"></script>
+
+    <script src="logreg/new/vendor/bootstrap/js/popper.js"></script>
+    <script src="logreg/new/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="logreg/new/vendor/select2/select2.min.js"></script>
+
+    <script src="logreg/new/vendor/daterangepicker/moment.min.js"></script>
+    <script src="logreg/new/vendor/daterangepicker/daterangepicker.js"></script>
+
+    <script src="logreg/new/vendor/countdowntime/countdowntime.js"></script>
+
+    <script src="logreg/new/js/main.js"></script>
+
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+
 </body>
 
 </html>

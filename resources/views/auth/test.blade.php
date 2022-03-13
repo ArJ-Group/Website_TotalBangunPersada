@@ -2,216 +2,237 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{!! asset('logreg/stylelogin.css') !!}">
-    <link rel="icon" href="landing/images/new/logo2.png">
-    <title>Nge Gym | Tanya Trainner dan Tips Hidup Sehat</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>GYM - LOGIN</title>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="landing/images/new/logo2.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{!! asset('logreg/stylelogin.css') !!}">
+  <link rel="icon" href="landing/images/new/logo2.png">
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="stylesheet" href="{{asset('logreg/new/vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
+  <link rel="stylesheet" href="{{asset('logreg/new/vendors/iconfonts/puse-icons-feather/feather.css')}}">
+  <link rel="stylesheet" href="{{asset('logreg/new/vendors/css/vendor.bundle.base.css')}}">
+  <link rel="stylesheet" href="{{asset('logreg/new/vendors/css/vendor.bundle.addons.css')}}">
+  <link rel="shortcut icon" href="{{asset('favicon.ico')}}" />
 </head>
 
 <body>
-    <div class="container">
+  <div class="container">
 
-        <div class="forms-container">
-            <div class="signin-signup">
-                <form method="POST" action="{{ route('login') }}" class="sign-in-form">
-                    @csrf
-                   
-                    <h2 class="title">Sign in</h2>
+    <div class="forms-container">
+      <div class="signin-signup">
 
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input id="username" placeholder="Username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+        <form method="POST" action="{{ route('login') }}" class="sign-in-form">
+          {{ csrf_field() }}
 
-                        @error('username')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
+          <h2 class="title">Sign in</h2>
 
-
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-
-                        <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6 offset-md-4">
-                            <div class="form-check">
-                                <input id="checkbox13" class="filled-in chk-col-blue" type="checkbox" name="checkbox13" {{ old('checkbox13') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="checkbox13">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn solid">
-                        {{ __('Login') }}
-                    </button>
-
-                    <div class="form-group row mb-0">
-                        <div class="col-md-8 offset-md-4">
-
-                            @if (Route::has('password.request'))
-                            <a style="color: grey;text-decoration: none;font-size: 13px;font-style: bold;opacity:70%;" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                            @endif
-                        </div>
-                    </div>
-                    <p class="social-text">Or Sign in with social platforms</p>
-                    <div class="social-media">
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-google"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </form>
-
-
-
-
-                <form method="POST" action="{{ route('register') }}" class="sign-up-form">
-                    @csrf
-                    <br>
-                 
-                    <h4 class="title">Sign up</h4>
-
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-
-                        <input id="username" placeholder="Username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                        @error('username')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-
-                    <div class="input-field">
-                        <i class="fa fa-address-card-o"></i>
-
-                        <input id="name" placeholder="Name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                        @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-
-                    </div>
-
-                    <div class="input-field">
-                        <i class="fa fa-envelope-open"></i>
-
-                        <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-
-
-                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-
-                    </div>
-
-                    <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Register') }}
-                            </button>
-                        </div>
-                    </div>
-                    <p class="social-text">Or Sign up with social platforms</p>
-                    <div class="social-media">
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-google"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </form>
+          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label class="label">Username</label>
+            <div class="input-group">
+              <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="mdi mdi-check-circle-outline"></i>
+                </span>
+              </div>
             </div>
-
-
-            <div class="panels-container">
-                <div class="panel left-panel">
-                    <div class="content">
-                        <h3>New here ?</h3>
-                        <p>
-                            Start By Click
-                        </p>
-                        <button class="btn transparent" id="sign-up-btn">
-                            Sign up
-                        </button>
-                    </div>
-                    <img src="logreg/gg.png" class="image" alt="" />
-                </div>
-                <div class="panel right-panel">
-                    <div class="content">
-                        <h3>One of us ?</h3>
-                        <p>
-                            Start Click
-                        </p>
-                        <button class="btn transparent" id="sign-in-btn">
-                            Sign in
-                        </button>
-                    </div>
-                    <img src="logreg/register.svg" class="image" alt="" />
-                </div>
+            @if ($errors->has('email'))
+            <span class="help-block">
+              <strong>{{ $errors->first('email') }}</strong>
+            </span>
+            @endif
+          </div>
+          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label class="label">Password</label>
+            <div class="input-group">
+              <input id="password" type="password" class="form-control" name="password" required>
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="mdi mdi-check-circle-outline"></i>
+                </span>
+              </div>
+              @if ($errors->has('password'))
+              <span class="help-block">
+                <strong>{{ $errors->first('password') }}</strong>
+              </span>
+              @endif
             </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary submit-btn btn-block" type="submit">Login</button>
+          </div>
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+
+        <form method="POST" action="{{ route('login') }}" class="sign-up-form">
+          <h2 class="title">Sign Up</h2>
+
+          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label class="label">Name</label>
+            <div class="input-group">
+              <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="mdi mdi-check-circle-outline"></i>
+                </span>
+              </div>
+            </div>
+            @if ($errors->has('email'))
+            <span class="help-block">
+              <strong>{{ $errors->first('email') }}</strong>
+            </span>
+            @endif
+          </div>
+
+          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label class="label">Email</label>
+            <div class="input-group">
+              <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="mdi mdi-check-circle-outline"></i>
+                </span>
+              </div>
+            </div>
+            @if ($errors->has('email'))
+            <span class="help-block">
+              <strong>{{ $errors->first('email') }}</strong>
+            </span>
+            @endif
+          </div>
+
+          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label class="label">Username</label>
+            <div class="input-group">
+              <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="username" autofocus>
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="mdi mdi-check-circle-outline"></i>
+                </span>
+              </div>
+            </div>
+            @if ($errors->has('email'))
+            <span class="help-block">
+              <strong>{{ $errors->first('email') }}</strong>
+            </span>
+            @endif
+          </div>
+          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label class="label">Password</label>
+            <div class="input-group">
+              <input id="password" type="password" class="form-control" name="password" required>
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="mdi mdi-check-circle-outline"></i>
+                </span>
+              </div>
+              @if ($errors->has('password'))
+              <span class="help-block">
+                <strong>{{ $errors->first('password') }}</strong>
+              </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label class="label">Confirm Password</label>
+            <div class="input-group">
+              <input id="password" type="password" class="form-control" name="password" required>
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="mdi mdi-check-circle-outline"></i>
+                </span>
+              </div>
+              @if ($errors->has('password'))
+              <span class="help-block">
+                <strong>{{ $errors->first('password') }}</strong>
+              </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary submit-btn btn-block" type="submit">Login</button>
+          </div>
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here ?</h3>
+            <p>
+              Start By Click
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Sign up
+            </button>
+          </div>
+          <img src="logreg/gg.png" class="image" alt="" />
         </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <p>
+              Start Click
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <img src="logreg/register.svg" class="image" alt="" />
+        </div>
+      </div>
+    </div>
 
-
-        <script src="logreg/app.js"></script>
+  </div>
+  <p class="footer-text text-center" style="margin-top: 20px;color: #308ee0">Copyright © {{date('Y')}} Polinema.com - All rights reserved.</p>
+  </div>
+  </div>
+  </div>
+  <!-- content-wrapper ends Herziwp@gmail.com -->
+  </div>
+  <!-- page-body-wrapper ends -->
+  </div>
+  </form>
+  <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
+  <script src="{{asset('vendors/js/vendor.bundle.addons.js')}}"></script>
+  <script src="logreg/app.js"></script>
 </body>
 
 </html>

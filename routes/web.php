@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,15 +13,13 @@
 |
 */
 
-Auth::routes();
 
-Route::get('/welcome', function () {
+
+Route::get('/Auth.welcome', function () {
   return view('Auth.welcome');
 });
 
-Route::get('/login1', function () {
-  return view('Auth.login1');
-});
+Auth::routes();
 
 Route::get('shop.index/', function () {
   return view('shop.index');
